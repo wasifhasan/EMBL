@@ -27,6 +27,8 @@ public class PersonRestAPI {
 	
 	@Autowired
 	private PersonService personService;
+	
+	private static final String PERSON = "Person";
 
 	/**
 	 * Returns all persons entries from database
@@ -36,7 +38,7 @@ public class PersonRestAPI {
 	@GetMapping("/person/getall")
 	public Map<String, List<PersonDTO>> getAllPerson() {
 		
-	    return JsonObjectWrapper.withLabel("Person", personService.findAll());
+	    return JsonObjectWrapper.withLabel(PERSON, personService.findAll());
 	}
 	
 	/**
@@ -47,7 +49,7 @@ public class PersonRestAPI {
 	 */
 	@GetMapping("/person/get/{id}")
 	public Map<String, PersonDTO> getPersonWithId(@PathVariable Long id) {
-		  return JsonObjectWrapper.withLabel("Person", personService.getPerson(id));
+		  return JsonObjectWrapper.withLabel(PERSON, personService.getPerson(id));
 	}
 	
 	/**
@@ -58,7 +60,7 @@ public class PersonRestAPI {
 	 */
 	@PostMapping("/person/create")
 	public Map<String, PersonDTO> createPerson(@RequestBody PersonDTO newPerson) {
-	    return JsonObjectWrapper.withLabel("Person",personService.savePerson(newPerson));
+	    return JsonObjectWrapper.withLabel(PERSON,personService.savePerson(newPerson));
 	}
 	
 	/**
@@ -70,7 +72,7 @@ public class PersonRestAPI {
 	 */
 	@PutMapping("/person/edit/{id}")
 	public Map<String, PersonDTO> editPerson(@RequestBody PersonDTO editedPerson , @PathVariable Long id) {
-		 return JsonObjectWrapper.withLabel("Person",personService.editPerson(editedPerson,id));
+		 return JsonObjectWrapper.withLabel(PERSON,personService.editPerson(editedPerson,id));
 	}
 	
 	/**
